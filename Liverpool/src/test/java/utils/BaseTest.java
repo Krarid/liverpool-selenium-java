@@ -18,6 +18,8 @@ public class BaseTest {
 		driver = WebDriverManager.edgedriver().create();
 				
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+		
+		driver.get("https://www.liverpool.com.mx/tienda/home");
 	}
 	
 	@AfterClass
