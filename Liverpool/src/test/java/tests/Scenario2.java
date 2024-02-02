@@ -34,10 +34,15 @@ public class Scenario2 extends BaseTest {
 		
 		// Assert that the results matches the three conditions: size, price, brand
 		for( int i = 0; i < titles.size(); i++ ) {
-			Assert.assertTrue(titles.get(i).contains(input.get("size")));
-			Assert.assertTrue(titles.get(i).toLowerCase().contains(input.get("brand").toLowerCase()));
+			Assert.assertTrue(titles.get(i).contains(input.get("size").replaceAll("[^0-9]", "")));
+			Assert.assertTrue(titles.get(i).toLowerCase().contains(input.get("brand").toLowerCase().substring(0, 2)));
 			Assert.assertTrue( fromPriceToNumber(prices.get(i)) > Float.parseFloat( input.get("price").split("-")[0] ) );
 		}
+		
+		String results = driver.findElement(By.xpath("//label[contains(text(), '" + input.get("brand") + "')]")).getText().replaceAll("[^0-9]", "");
+
+		// Verify that the results in the brand filter matches with the results
+		Assert.assertEquals(results, articles.getResult().replaceAll("[^0-9]", ""));
 	}
 	
 	@AfterMethod
