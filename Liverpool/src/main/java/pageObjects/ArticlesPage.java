@@ -1,6 +1,5 @@
 package pageObjects;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Stack;
 
@@ -33,6 +32,9 @@ public class ArticlesPage {
 	
 	@FindBy(css = "input[id*='brand']")
 	private List<WebElement> brands;
+	
+	@FindBy(css = "h1.searcherTitle-result")
+	private WebElement result;
 	
 	@FindBy(id = "Tamao")
 	private WebElement showMoreSizes;
@@ -103,6 +105,11 @@ public class ArticlesPage {
 		return priceFilter.getText();
 	}
 	
+	public String getResult()
+	{
+		return result.getText();
+	}
+	
 	public void chooseSize(String size) throws InterruptedException
 	{
 		try {
@@ -120,7 +127,7 @@ public class ArticlesPage {
 				js.executeScript("arguments[0].scrollIntoView();", s);
 				s.click();
 				
-				Thread.sleep(Duration.ofSeconds(1));
+				Thread.sleep(1000);
 				
 				break;
 			}
@@ -138,8 +145,7 @@ public class ArticlesPage {
 				js.executeScript("arguments[0].scrollIntoView();", p);
 				p.click();
 				
-				Thread.sleep(Duration.ofSeconds(1));
-				
+				Thread.sleep(1000);
 				break;
 			}
 		}
@@ -162,7 +168,7 @@ public class ArticlesPage {
 				js.executeScript("arguments[0].scrollIntoView();", b);
 				b.click();
 				
-				Thread.sleep(Duration.ofSeconds(1));
+				Thread.sleep(1000);
 				
 				break;
 			}
