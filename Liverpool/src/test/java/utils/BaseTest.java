@@ -31,7 +31,7 @@ public class BaseTest extends WebUtils {
 		
 		property.load(propertyFile);
 		
-		driver = WebDriverManager.edgedriver().create();
+		driver = WebDriverManager.chromedriver().create();
 				
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 		driver.manage().window().maximize();
