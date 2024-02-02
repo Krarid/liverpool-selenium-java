@@ -23,9 +23,6 @@ public class BaseTest extends WebUtils {
 	public HomePage home;
 	public Properties property;
 	
-	private static String OS = System.getProperty("os.name").toLowerCase();
-    public static boolean IS_WINDOWS = (OS.indexOf("win") >= 0);
-	
 	@BeforeClass
 	public void ConfigureDriver() throws IOException
 	{
