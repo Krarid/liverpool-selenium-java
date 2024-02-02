@@ -23,12 +23,20 @@ public class BaseTest extends WebUtils {
 	public HomePage home;
 	public Properties property;
 	
+	private static String OS = System.getProperty("os.name").toLowerCase();
+    public static boolean IS_WINDOWS = (OS.indexOf("win") >= 0);
+	
 	@BeforeClass
 	public void ConfigureDriver() throws IOException
 	{
 		property = new Properties();
-		FileInputStream propertyFile = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\data.properties");
+		FileInputStream propertyFile;
 		
+		if(IS_WINDOWS)
+			propertyFile = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\data.properties");
+		else
+			propertyFile = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/resources/data.properties");
+			
 		property.load(propertyFile);
 		
 		driver = WebDriverManager.chromedriver().create();
@@ -44,7 +52,12 @@ public class BaseTest extends WebUtils {
 	@DataProvider
 	public Object[][] getData(Method m) throws IOException
 	{	
-		List<HashMap<String, String>> data = getJsonData(System.getProperty("user.dir") + "\\src\\test\\java\\data\\" + m.getName() + ".json");
+		List<HashMap<String, String>> data;
+		
+		if(IS_WINDOWS)
+			data = getJsonData(System.getProperty("user.dir") + "\\src\\test\\java\\data\\" + m.getName() + ".json");
+		else
+			data = getJsonData(System.getProperty("user.dir") + "/src/test/java/data/" + m.getName() + ".json");
 		
 		Object[][] objData = new Object[data.size()][1];
 		
