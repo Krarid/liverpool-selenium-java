@@ -1,9 +1,11 @@
 package pageObjects;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Stack;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +18,27 @@ public class ArticlesPage {
 	
 	@FindBy(css = "figure")
 	private List<WebElement> articles;
+	
+	@FindBy(css = "label[title='Tamaño']")
+	private WebElement sizeFilter;
+	
+	@FindBy(css = "label[title='Precios']")
+	private WebElement priceFilter;
+	
+	@FindBy(css = "input[id$='pulgadas']")
+	private List<WebElement> sizes;
+	
+	@FindBy(css = "input[id*='sortPrice']")
+	private List<WebElement> prices;
+	
+	@FindBy(css = "input[id*='brand']")
+	private List<WebElement> brands;
+	
+	@FindBy(id = "Tamao")
+	private WebElement showMoreSizes;
+	
+	@FindBy(id = "Marcas")
+	private WebElement showMoreBrands;
 	
 	public ArticlesPage(WebDriver driver) {
 		this.driver = driver;
@@ -30,6 +53,16 @@ public class ArticlesPage {
 			titles.add( article.findElement(By.cssSelector("figure article h5")).getText() );
 		
 		return titles;
+	}
+	
+	public Stack<String> getArticlePrices()
+	{
+		Stack<String> prices = new Stack<String>();
+		
+		for( WebElement article : articles )
+			prices.add( article.findElement(By.cssSelector("figure p[class*='a-card']:last-of-type")).getText() );
+		
+		return prices;
 	}
 	
 	public int getArticleID(String title) throws NoSuchElementException
@@ -58,5 +91,81 @@ public class ArticlesPage {
 		articles.get(articleID).click();
 		
 		return new ArticlePage(driver);
+	}
+	
+	public String getSizeFilter()
+	{
+		return sizeFilter.getText();
+	}
+	
+	public String getPriceFilter()
+	{
+		return priceFilter.getText();
+	}
+	
+	public void chooseSize(String size) throws InterruptedException
+	{
+		try {
+			showMoreSizes.click();
+		} catch(NoSuchElementException e) {
+			//
+		}
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		for(WebElement s : sizes) {
+			
+			if( s.getAttribute("id").contains(size) ) {
+				
+				js.executeScript("arguments[0].scrollIntoView();", s);
+				s.click();
+				
+				Thread.sleep(Duration.ofSeconds(1));
+				
+				break;
+			}
+		}
+	}
+	
+	public void choosePrice(String price) throws InterruptedException
+	{		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		for( WebElement p : prices ) {
+			
+			if( p.getAttribute("id").contains(price) ) {
+				
+				js.executeScript("arguments[0].scrollIntoView();", p);
+				p.click();
+				
+				Thread.sleep(Duration.ofSeconds(1));
+				
+				break;
+			}
+		}
+	}
+	
+	public void chooseBrand(String brand) throws InterruptedException
+	{
+		try {
+			showMoreBrands.click();
+		} catch(NoSuchElementException e) {
+			//
+		}
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		for( WebElement b : brands ) {
+			
+			if( b.getAttribute("id").contains(brand) ) {
+				
+				js.executeScript("arguments[0].scrollIntoView();", b);
+				b.click();
+				
+				Thread.sleep(Duration.ofSeconds(1));
+				
+				break;
+			}
+		}
 	}
 }
