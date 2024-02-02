@@ -30,6 +30,11 @@ public class WebUtils {
 	    return found;
 	}
 	
+	public float fromPriceToNumber(String price)
+	{
+		return Float.parseFloat(price.substring(1).replaceAll(",", "")) / 100;
+	}
+	
 	public List<HashMap<String, String>> getJsonData(String jsonFilePath) throws IOException 
 	{
 		String jsonContent = FileUtils.readFileToString(new File(jsonFilePath), StandardCharsets.UTF_8);
