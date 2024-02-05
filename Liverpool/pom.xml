@@ -68,7 +68,67 @@
 				        <version>3.1.2</version>
 				        <configuration>
 				          <suiteXmlFiles>
-				            <suiteXmlFile>testng.xml</suiteXmlFile>
+				            <suiteXmlFile>TestNG/testng.xml</suiteXmlFile>
+				          </suiteXmlFiles>
+				        </configuration>
+				      </plugin>
+				  </plugins>
+			  </pluginManagement>
+		  </build>
+	  </profile>
+	  <!-- mvn test -P Scenario1 -->
+	  <profile>
+		  <id>Scenario1</id>
+		  <build>
+			  <pluginManagement>
+				  <plugins>
+					  <plugin>
+				        <groupId>org.apache.maven.plugins</groupId>
+				        <artifactId>maven-surefire-plugin</artifactId>
+				        <version>3.1.2</version>
+				        <configuration>
+				          <suiteXmlFiles>
+				            <suiteXmlFile>TestNG/scenario1.xml</suiteXmlFile>
+				          </suiteXmlFiles>
+				        </configuration>
+				      </plugin>
+				  </plugins>
+			  </pluginManagement>
+		  </build>
+	  </profile>
+	  <!-- mvn test -P Scenario2 -->
+	  <profile>
+		  <id>Scenario2</id>
+		  <build>
+			  <pluginManagement>
+				  <plugins>
+					  <plugin>
+				        <groupId>org.apache.maven.plugins</groupId>
+				        <artifactId>maven-surefire-plugin</artifactId>
+				        <version>3.1.2</version>
+				        <configuration>
+				          <suiteXmlFiles>
+				            <suiteXmlFile>TestNG/scenario2.xml</suiteXmlFile>
+				          </suiteXmlFiles>
+				        </configuration>
+				      </plugin>
+				  </plugins>
+			  </pluginManagement>
+		  </build>
+	  </profile>
+	  <!-- mvn test -P Scenario3 -->
+	  <profile>
+		  <id>Scenario3</id>
+		  <build>
+			  <pluginManagement>
+				  <plugins>
+					  <plugin>
+				        <groupId>org.apache.maven.plugins</groupId>
+				        <artifactId>maven-surefire-plugin</artifactId>
+				        <version>3.1.2</version>
+				        <configuration>
+				          <suiteXmlFiles>
+				            <suiteXmlFile>TestNG/scenario3.xml</suiteXmlFile>
 				          </suiteXmlFiles>
 				        </configuration>
 				      </plugin>
