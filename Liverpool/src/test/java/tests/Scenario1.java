@@ -19,7 +19,7 @@ public class Scenario1 extends BaseTest {
 		
 		Stack<String> titles = articles.getArticleTitles();
 		
-		String[] items = {"PlayStation", "Playstation", "Play Station", "PS5", "PS4", "Sony"};
+		String[] items = {"PlayStation", "Playstation", "Play Station", "PS5", "PS4", "PS3", "Sony"};
 		
 		// Assert that the results matches at least one of the words above
 		for( String title : titles ) {

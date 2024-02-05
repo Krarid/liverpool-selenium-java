@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Liverpool">
+  <listeners>
+    <listener class-name="utils.Listeners"></listener>
+  </listeners>
+  <test thread-count="5" name="Scenario2">
+    <classes>
+	  <class name="tests.Scenario2"/>
+    </classes>
+  </test> <!-- Scenario 2 -->
+</suite> <!-- Liverpool -->
