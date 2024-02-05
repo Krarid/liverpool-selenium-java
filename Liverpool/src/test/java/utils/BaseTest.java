@@ -36,7 +36,21 @@ public class BaseTest extends WebUtils {
 			
 		property.load(propertyFile);
 		
-		driver = WebDriverManager.chromedriver().create();
+		String browser = System.getProperty("browser") != null ? System.getProperty("browser") : property.getProperty("browser");
+		
+		switch(browser) {
+			case "chrome":
+				driver = WebDriverManager.chromedriver().create();
+			break;
+			
+			case "edge":
+				driver = WebDriverManager.edgedriver().create();
+			break;
+			
+			case "firefox":
+				driver = WebDriverManager.firefoxdriver().create();
+			break;
+		}
 				
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 		driver.manage().window().maximize();
