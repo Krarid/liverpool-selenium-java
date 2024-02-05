@@ -11,3 +11,9 @@ Search for “smart tv” and navigate to the page. Validate that the Size and P
 
 ## Scenario 3. 
 Expand the “Categorias” menu, place the cursor over the “Belleza” option, select the “Perfumes de Hombre” option in the menu displayed and filter the results displayed by “Dior” brand.
+
+## Recording
+https://github.com/Krarid/liverpool-selenium-java/assets/76078049/52b91c5c-1877-43fa-b01f-19c94ad638d2
+
+## UML
+![UML Diagram](https://github.com/Krarid/liverpool-selenium-java/blob/master/UML.png?raw=true)
