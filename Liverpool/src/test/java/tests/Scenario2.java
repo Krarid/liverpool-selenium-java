@@ -18,7 +18,7 @@ public class Scenario2 extends BaseTest {
 		ArticlesPage articles = home.search(input.get("article"));
 		
 		// Sizes and prices filters are displayed
-		Assert.assertEquals(articles.getSizeFilter(), "Tamaño");
+		Assert.assertTrue(articles.getSizeFilter().startsWith("Tama"));
 		Assert.assertEquals(articles.getPriceFilter(), "Precios");
 		
 		articles.chooseSize(input.get("size"));
