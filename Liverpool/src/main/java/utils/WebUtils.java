@@ -24,7 +24,7 @@ public class WebUtils {
 	    boolean found = false;
 	    
 	    for (String item : items) {
-	        if (inputString.contains(item)) {
+	        if (inputString.toLowerCase().contains(item.toLowerCase())) {
 	            found = true;
 	            break;
 	        }
